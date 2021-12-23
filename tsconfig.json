@@ -4,8 +4,10 @@
             "node",
             "webdriverio/async",
             "@wdio/cucumber-framework",
-            "expect-webdriverio"
+            "expect-webdriverio",
         ],
-        "target": "ES5"
+        "target": "ES5",
+        "resolveJsonModule": true,
+        "esModuleInterop": true
     }
 }

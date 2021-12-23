@@ -35,6 +35,10 @@ class ContactInfo{
         await MobileActions.clickOn(this.addContactButton, 'predicate');
         await MobileActions.enterValueInto(this.mobileNo, cNum, 'predicate')
     }
+
+    async photoLocator(firstName: string, lastName: string){
+        return await $(`~Contact photo for ${firstName} ${lastName}`);
+    }
 }
 
 export default new ContactInfo();
