@@ -1,0 +1,29 @@
+<qa:environment xmlns:qa="urn:model.commons.qatools.yandex.ru">
+    <name>Mobile-Automation-Appium</name>
+    <url></url>
+    <parameter>
+        <name>APP Name</name>
+        <key>APP Name</key>
+        <value>Contacts</value>
+    </parameter>
+    <parameter>
+        <name>Device</name>
+        <key>Device</key>
+        <value>iPhone 12</value>
+    </parameter>
+    <parameter>
+        <name>Device OS</name>
+        <key>Device OS</key>
+        <value>iOS 14.5</value>
+    </parameter>
+    <parameter>
+        <name>Device Type</name>
+        <key>Device Type</key>
+        <value>Mobile</value>
+    </parameter>
+    <parameter>
+        <name>App Environment</name>
+        <key>App Environment</key>
+        <value>Local</value>
+    </parameter>
+</qa:environment>
