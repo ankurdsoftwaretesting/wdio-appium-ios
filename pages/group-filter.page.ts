@@ -12,7 +12,7 @@ class GroupFilter {
   private showAllContactsLink: string =
     '**/XCUIElementTypeStaticText[`label == "Show All Contacts"`]';
   private allContactsFooterLink: string =
-    '//XCUIElementTypeButton[contains(@name, "All Contacts")]';
+    '**/XCUIElementTypeButton[`name ENDSWITH "All Contacts"`]'; //'//XCUIElementTypeButton[contains(@name, "All Contacts")]';
 
   private allIPhoneText: string =
     '**/XCUIElementTypeStaticText[`label == "All iPhone"`]';
@@ -37,8 +37,8 @@ class GroupFilter {
 
   async selectDefaultFilterOption() {
     const footerLinkText = (
-      await elementUtils.getElementByXPath(this.allContactsFooterLink)
-    ).getText();
+      await elementUtils.getElementByClassChain(this.allContactsFooterLink)
+    ).getText(); ////   await elementUtils.getElementByXPath(this.allContactsFooterLink)
     if ((await footerLinkText).includes('Show')) {
       await this.clickOnShowAllContacts();
     }
