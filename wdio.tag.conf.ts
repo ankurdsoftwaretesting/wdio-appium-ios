@@ -20,7 +20,7 @@ export const config: WebdriverIO.Config = {
       bundleId: 'com.apple.MobileAddressBook',
       udid: '',
       deviceName: 'iPhone 12',
-      platformVersion: '14.5',
+      platformVersion: '15.2',
     },
   ],
 
@@ -43,7 +43,7 @@ export const config: WebdriverIO.Config = {
   reporters: ['spec', 'dot', ['allure', { outputDir: 'allure-results' }]],
 
   cucumberOpts: {
-    require: ['./features/step-definitions/steps.ts'],
+    require: ['./features/step-definitions/*-steps.ts'],
     backtrace: false,
     requireModule: [],
     dryRun: false,

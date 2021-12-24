@@ -1,9 +1,12 @@
+@multiple-contacts
+@regression
 Feature: Add contacts
     Scenario Outline: As a mobile user, I want to save multiple contacts into my contact list
 
         Given I am on the contacts app
         When I click on + button
         And I save contact as "<FIRST_NAME>" "<LAST_NAME>" "<COMPANY>" "<MOBILE_NO>"
+        And I come back on contact list
         Then I should see a newly added contact info for "<FIRST_NAME>" "<LAST_NAME>"
 
         Examples:

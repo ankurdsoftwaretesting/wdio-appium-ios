@@ -1,10 +1,14 @@
-
+@single-contact
+@regression
 Feature: Add a new contact
-    Scenario: As a mobile user, I should be able to add a new contact info.
 
+    Background: contacts app should be opened
         Given I am on the contacts app
+
+    Scenario: As a mobile user, I should be able to add a new contact info.
         When I click on + button
         And I add a new contact as
-            | ANKUR | DUBEY | ICompaz | 6590909090 |
-        Then I should see a newly added contact info as
-            | ANKUR | DUBEY |
+            | ANKUR21 | DUBEY21 | ICompaz | 6590909090 |
+        And I come back on contact list
+        Then I should see contact info for
+            | ANKUR21 | DUBEY21 |

@@ -21,6 +21,7 @@
     "wdio-run-tag": "npm run clean && wdio run wdio.tag.conf.ts",
     "wdio-run-suite": "npm run clean && wdio run wdio.suite.conf.ts",
     "test-tag-regression": "npm run wdio-run-tag -- --cucumberOpts.tagExpression=@regression",
+    "test-tag-sanity": "npm run wdio-run-tag -- --cucumberOpts.tagExpression=@sanity",
     "test-suite-newContact": "npm run wdio-run-suite  -- --suite=newContact",
     "generate-report": "cp support/env/*.* allure-results && allure serve"
   }

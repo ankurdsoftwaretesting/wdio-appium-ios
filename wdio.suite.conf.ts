@@ -6,7 +6,9 @@ export const config: WebdriverIO.Config = {
   suites: {
     addMultipleContacts: ['./features/add-contacts.feature'],
     addSingleContact: ['./features/add-contact.feature'],
-    newContact: ['./features/contact-app.feature'],
+    addNewContact: ['./features/contact-app.feature'],
+    addNewFriend: ['./features/add-friend-contacts.feature'],
+    addWorkFriend: ['./features/add-work-contacts.feature'],
   },
 
   exclude: [],
@@ -24,7 +26,7 @@ export const config: WebdriverIO.Config = {
       bundleId: 'com.apple.MobileAddressBook',
       udid: '',
       deviceName: 'iPhone 12',
-      platformVersion: '14.5',
+      platformVersion: '15.2',
     },
   ],
 
@@ -47,7 +49,7 @@ export const config: WebdriverIO.Config = {
   reporters: ['spec', 'dot', ['allure', { outputDir: 'allure-results' }]],
 
   cucumberOpts: {
-    require: ['./features/step-definitions/steps.ts'],
+    require: ['./features/step-definitions/*-steps.ts'],
     backtrace: false,
     requireModule: [],
     dryRun: false,
