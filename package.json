@@ -23,6 +23,15 @@
     "test-tag-regression": "npm run wdio-run-tag -- --cucumberOpts.tagExpression=@regression",
     "test-tag-sanity": "npm run wdio-run-tag -- --cucumberOpts.tagExpression=@sanity",
     "test-suite-newContact": "npm run wdio-run-suite  -- --suite=newContact",
-    "generate-report": "cp support/env/*.* allure-results && allure serve"
+    "generate-report": "cp support/env/*.* allure-results && allure serve",
+    "run-iPhone-12-mini": "xcrun simctl boot CF633E7F-3498-42C5-8597-F8F2D2AE1336",
+    "run-iPhone-12": "xcrun simctl boot 41BD2534-B0E2-428B-84ED-8365BD823DF5",
+    "run-iPhone-13-pro-max": "xcrun simctl boot EC681397-88B5-452A-A8A0-E0CF2402BC67",
+    "create-my-iPhone12": "xcrun simctl create Ankur-iPhone12 com.apple.CoreSimulator.SimDeviceType.iPhone-12 com.apple.CoreSimulator.SimRuntime.iOS-15-2",
+    "run-my-iPhone12": "xcrun simctl boot Ankur-iPhone12",
+    "stop-my-iPhone12": "xcrun simctl shutdown Ankur-iPhone12",
+    "test-on-my-iPhone12": "DEVICE_NAME=\"Ankur-iPhone12\" npm run wdio-run-tag -- --cucumberOpts.tagExpression=@categorize-contact",
+    "test-tag-on-my-iPhone12": "DEVICE_NAME=\"Ankur-iPhone12\" TAG=\"@categorize-contact\" npm run wdio-run-tag",
+    "test-suite-on-my-iPhone12": "DEVICE_NAME=\"Ankur-iPhone12\" npm run wdio-run-suite -- --suite=addMultipleContacts"
   }
 }

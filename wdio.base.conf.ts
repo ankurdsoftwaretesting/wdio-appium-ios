@@ -3,8 +3,6 @@ export const config: WebdriverIO.Config = {
   port: 4723,
   path: '/wd/hub',
 
-  specs: ['./features/**/*.feature'],
-
   exclude: [],
 
   maxInstances: 1,
@@ -20,7 +18,7 @@ export const config: WebdriverIO.Config = {
       bundleId: 'com.apple.MobileAddressBook',
       udid: '',
       deviceName: process.env.DEVICE_NAME || 'iPhone 13 Pro Max',
-      platformVersion: '15.2',
+      platformVersion: '14.5',
     },
   ],
 
@@ -43,7 +41,7 @@ export const config: WebdriverIO.Config = {
   reporters: ['spec', 'dot', ['allure', { outputDir: 'allure-results' }]],
 
   cucumberOpts: {
-    require: ['./features/step-definitions/*-steps.ts'],
+    require: ['./features/step-definitions/steps.ts'],
     backtrace: false,
     requireModule: [],
     dryRun: false,

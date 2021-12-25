@@ -25,7 +25,7 @@ export const config: WebdriverIO.Config = {
       commandTimeout: 5000,
       bundleId: 'com.apple.MobileAddressBook',
       udid: '',
-      deviceName: 'iPhone 12',
+      deviceName: process.env.DEVICE_NAME || 'iPhone 13 Pro Max',
       platformVersion: '15.2',
     },
   ],
