@@ -54,10 +54,31 @@ When('I click on groups button', async () => {
   await homePage.clickOnGroupsButton();
 });
 
-When('I select {string} filter only', async (filterOption) => {
-  await groupFilterPage.selectOnlyOption(filterOption);
+When('I {string} to {string} filter', async (operation, filterOption) => {
+  switch (operation) {
+    case 'select': {
+      await groupFilterPage.selectFilterOption(filterOption);
+      break;
+    }
+    case 'unselect': {
+      await groupFilterPage.unselectFilterOption(filterOption);
+      break;
+    }
+  }
 });
 
 When('I do search', async () => {
+  await commonElementsPage.clickOnDoneButton();
+});
+
+When('I come back on groups page', async () => {
+  await homePage.clickOnGroupsButton();
+});
+
+When('I select default filter option', async () => {
+  await groupFilterPage.showAllContactsButton();
+});
+
+When('I apply filter', async () => {
   await commonElementsPage.clickOnDoneButton();
 });

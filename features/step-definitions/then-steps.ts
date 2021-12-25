@@ -47,8 +47,27 @@ Then('I should see contact info for', async (dataTable) => {
   expect(photoElement).toBeDisplayed();
 });
 
-Then('I select default filter option', async () => {
-  await homePage.clickOnGroupsButton();
-  await groupFilterPage.selectDefaultFilterOption();
-  await commonElementsPage.clickOnDoneButton();
+Then(
+  'I verify {string} option is selected and others are unSelected',
+  async (filterOption) => {
+    const filters = ['All iPhone', 'Friends', 'Work'];
+    for (const filter of filters) {
+      if (filter === filterOption) {
+        expect(await groupFilterPage.getStateValueOfGroup(filter)).toBe(
+          'selected'
+        );
+      } else {
+        expect(await groupFilterPage.getStateValueOfGroup(filter)).toBe(
+          'unSelected'
+        );
+      }
+    }
+  }
+);
+
+Then('I verify all the options are {string}', async (state) => {
+  const filters = ['All iPhone', 'Friends', 'Work'];
+  for (const filter of filters) {
+    expect(await groupFilterPage.getStateValueOfGroup(filter)).toBe(state);
+  }
 });

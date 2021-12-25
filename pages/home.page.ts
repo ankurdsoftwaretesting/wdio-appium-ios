@@ -15,7 +15,7 @@ class HomePage {
   }
 
   async valueOfHeader() {
-    return await ElementUtils.getValueOf(this.contactHeader, 'class');
+    return await ElementUtils.getTextOf(this.contactHeader, 'class');
   }
 }
 

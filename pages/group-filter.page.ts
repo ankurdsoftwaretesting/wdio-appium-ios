@@ -8,11 +8,15 @@ class GroupFilter {
     '**/XCUIElementTypeStaticText[`label == "IPHONE"`]';
 
   private hideAllContactsLink: string =
-    '**/XCUIElementTypeStaticText[`label == "Hide All Contacts"`]';
+    '**/XCUIElementTypeButton[`name BEGINSWITH "Hide All Contacts"`]';
+  //   '**/XCUIElementTypeStaticText[`label == "Hide All Contacts"`]';
   private showAllContactsLink: string =
-    '**/XCUIElementTypeStaticText[`label == "Show All Contacts"`]';
+    '**/XCUIElementTypeButton[`name BEGINSWITH "Show All Contacts"`]';
+  //   '**/XCUIElementTypeStaticText[`label == "Show All Contacts"`]';
   private allContactsFooterLink: string =
-    '**/XCUIElementTypeButton[`name ENDSWITH "All Contacts"`]'; //'//XCUIElementTypeButton[contains(@name, "All Contacts")]';
+    '**/XCUIElementTypeButton[`name ENDSWITH "All Contacts"`]';
+  // '**/XCUIElementTypeButton[`name CONTAINS "All Contacts"`]';
+  //'//XCUIElementTypeButton[contains(@name, "All Contacts")]';
 
   private allIPhoneText: string =
     '**/XCUIElementTypeStaticText[`label == "All iPhone"`]';
@@ -20,8 +24,12 @@ class GroupFilter {
   private friendsText: string =
     '**/XCUIElementTypeStaticText[`label == "Friends"`]';
 
-  private allIPhoneChecked: string =
-    '**/XCUIElementTypeImage[`label == "selected"`][1]';
+  private allIPhoneCheckBox =
+    '//XCUIElementTypeCell[@name="All iPhone"]//XCUIElementTypeImage';
+  private friendsCheckBox =
+    '//XCUIElementTypeCell[@name="Friends"]//XCUIElementTypeImage';
+  private workCheckBox =
+    '//XCUIElementTypeCell[@name="Work"]//XCUIElementTypeImage';
 
   async clickOnAllIPhone() {
     await mobileActions.clickOn(this.allIPhoneText, 'class');
@@ -35,35 +43,67 @@ class GroupFilter {
     await mobileActions.clickOn(this.friendsText, 'class');
   }
 
-  async selectDefaultFilterOption() {
-    const footerLinkText = (
-      await elementUtils.getElementByClassChain(this.allContactsFooterLink)
-    ).getText(); ////   await elementUtils.getElementByXPath(this.allContactsFooterLink)
-    if ((await footerLinkText).includes('Show')) {
-      await this.clickOnShowAllContacts();
-    }
-  }
-
-  async selectOnlyOption(option: string) {
-    await this.clickOnAllIPhone();
-    switch (option) {
-      case 'Friends': {
-        await this.clickOnFriends();
-        break;
-      }
-      case 'Work': {
-        await this.clickOnWork();
-        break;
-      }
-    }
-  }
-
   async clickOnHideAllContacts() {
     await mobileActions.clickOn(this.hideAllContactsLink, 'class');
   }
 
   async clickOnShowAllContacts() {
     await mobileActions.clickOn(this.showAllContactsLink, 'class');
+  }
+
+  async showAllContactsButton() {
+    const footerLinkText = await elementUtils.getTextOf(
+      this.allContactsFooterLink,
+      'class'
+    ); //   await elementUtils.getElementByXPath(this.allContactsFooterLink)
+    if (footerLinkText.includes('Show')) {
+      await this.clickOnShowAllContacts();
+    }
+  }
+
+  async hideAllContactsButton() {
+    const footerLinkText = await elementUtils.getTextOf(
+      this.allContactsFooterLink,
+      'class'
+    ); //   await elementUtils.getElementByXPath(this.allContactsFooterLink)
+    if (footerLinkText.includes('Hide')) {
+      await this.clickOnHideAllContacts();
+    }
+  }
+
+  async unselectFilterOption(option: string) {
+    if ((await this.getStateValueOfFilter(option)) === 'selected') {
+      await this.clickOnCheckbox(option);
+    }
+  }
+
+  async selectFilterOption(option: string) {
+    if ((await this.getStateValueOfFilter(option)) === 'circle') {
+      await this.clickOnCheckbox(option);
+    }
+  }
+
+  async clickOnCheckbox(option: string) {
+    await mobileActions.clickOn(
+      `//XCUIElementTypeCell[@name="${option}"]//XCUIElementTypeImage`,
+      'xpath'
+    );
+  }
+
+  // The following two functions are same, just finding element by XPATH and CLASS CHAIN respectively.
+  async getStateValueOfFilter(groupName: string) {
+    const elm = await elementUtils.getElementByXPath(
+      `//XCUIElementTypeCell[@name="${groupName}"]//XCUIElementTypeImage`
+    );
+    return await elm.getAttribute('name');
+  }
+
+  async getStateValueOfGroup(groupName: string) {
+    const elm = await elementUtils.getElementByClassChain(
+      `**/XCUIElementTypeCell[\`label == "${groupName}"\`]/XCUIElementTypeOther[2]/XCUIElementTypeImage`
+    );
+    const actualState = await elm.getAttribute('label');
+    return actualState === 'selected' ? 'selected' : 'unSelected';
   }
 }
 

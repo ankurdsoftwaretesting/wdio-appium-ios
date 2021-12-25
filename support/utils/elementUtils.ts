@@ -15,7 +15,7 @@ class ElementUtils {
     return await $(`${elm}`);
   }
 
-  async getValueOf(elm: string, locator?: string) {
+  async getTextOf(elm: string, locator?: string) {
     if (locator === 'predicate') {
       return await (await this.getElementByPredicate(elm)).getText();
     } else if (locator === 'class') {
@@ -23,6 +23,11 @@ class ElementUtils {
     } else {
       return await (await this.getElementByAccessibilityId(elm)).getText();
     }
+  }
+
+  async getValueOf(elm: string, attr: string) {
+    const el = await this.getElementByXPath(elm);
+    return el.getAttribute(attr);
   }
 }
 

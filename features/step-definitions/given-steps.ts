@@ -11,6 +11,6 @@ Given(
   'I am on the groups filter page with default filter selected',
   async () => {
     await homePage.clickOnGroupsButton();
-    await groupFilterPage.selectDefaultFilterOption();
+    await groupFilterPage.showAllContactsButton();
   }
 );
