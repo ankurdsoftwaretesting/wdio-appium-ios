@@ -11,7 +11,7 @@ export const config: WebdriverIO.Config = {
 
   capabilities: [
     {
-      maxInstances: 5,
+      maxInstances: 1,
       browserName: '',
       acceptInsecureCerts: true,
       platformName: 'iOS',
