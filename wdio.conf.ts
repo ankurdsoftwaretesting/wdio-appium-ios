@@ -16,6 +16,7 @@ export const config: WebdriverIO.Config = {
       acceptInsecureCerts: true,
       platformName: 'iOS',
       automationName: 'XCUITest',
+      bundleId: 'com.apple.MobileAddressBook',
       commandTimeout: 4000,
       udid: '',
       
