@@ -16,8 +16,9 @@ export const config: WebdriverIO.Config = {
       acceptInsecureCerts: true,
       platformName: 'iOS',
       automationName: 'XCUITest',
-      commandTimeout: 5000,
+      commandTimeout: 3000,
       udid: '',
+      
       deviceName: process.env.DEVICE_NAME || 'iPhone 13 Pro Max',
       platformVersion: '15.2',
     },
